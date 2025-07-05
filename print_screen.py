@@ -3,7 +3,7 @@ import time
 import datetime
 import os
 
-output_dir = "screenshots"
+output_dir = "dataset_iracing/screenshots"
 os.makedirs(output_dir, exist_ok=True)
 
 try:
@@ -16,3 +16,5 @@ try:
         time.sleep(1)
 except KeyboardInterrupt:
     print("Stopped by user.")
+    
+    
