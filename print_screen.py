@@ -1,31 +1,18 @@
-from windows_capture import WindowsCapture, Frame, InternalCaptureControl
+import pyautogui
+import time
+import datetime
+import os
 
-# Every Error From on_closed and on_frame_arrived Will End Up Here
-capture = WindowsCapture(
-    cursor_capture=None,
-    draw_border=None,
-    monitor_index=None,
-    window_name=None,
-)
+output_dir = "screenshots"
+os.makedirs(output_dir, exist_ok=True)
 
-
-# Called Every Time A New Frame Is Available
-@capture.event
-def on_frame_arrived(frame: Frame, capture_control: InternalCaptureControl):
-    print("New Frame Arrived")
-
-    # Save The Frame As An Image To The Specified Path
-    frame.save_as_image("print/image.png")
-
-    # Gracefully Stop The Capture Thread
-    capture_control.stop()
-
-
-# Called When The Capture Item Closes Usually When The Window Closes, Capture
-# Session Will End After This Function Ends
-@capture.event
-def on_closed():
-    print("Capture Session Closed")
-
-
-capture.start()
+try:
+    while True:
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = os.path.join(output_dir, f"screenshot_{timestamp}.jpg")
+        screenshot = pyautogui.screenshot()
+        screenshot.save(filename)
+        print(f"Saved {filename}")
+        time.sleep(1)
+except KeyboardInterrupt:
+    print("Stopped by user.")
