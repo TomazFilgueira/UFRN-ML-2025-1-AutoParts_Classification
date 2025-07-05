@@ -31,7 +31,16 @@ else:
         if img is None:
             print(f"Não foi possível abrir {img_name}.")
             continue
+        
+        # Redimensiona a imagem para largura de 800px mantendo a proporção
+        max_width = 800
+        if img.shape[1] > max_width:
+            scale = max_width / img.shape[1]
+            new_dim = (max_width, int(img.shape[0] * scale))
+            img = cv2.resize(img, new_dim)
+        # Exibe a imagem e solicita o rótulo
         cv2.imshow("Imagem para rotular", img)
+        cv2.waitKey(100)  
         print("Escolha o rótulo para esta imagem:")
         for i, label in enumerate(LABELS):
             print(f"{i} - {label}")
@@ -51,3 +60,4 @@ else:
         cv2.destroyAllWindows()
         os.rename(img_path, dest_path)
         print(f"Imagem movida para: {dest_path}")
+        
