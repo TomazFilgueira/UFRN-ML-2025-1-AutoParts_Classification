@@ -2,7 +2,7 @@ import cv2
 import os
 
 # Diretório base onde os dados estão salvos
-BASE_DIR = "dataset_iracing"
+BASE_DIR = "test_dataset_iracing"
 
 # Lista de rótulos possíveis
 LABELS = [
