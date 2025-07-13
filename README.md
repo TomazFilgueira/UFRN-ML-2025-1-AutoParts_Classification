@@ -105,6 +105,31 @@ The dataset was built using a custom, two-step process to ensure both efficiency
 
 This two-step methodology allowed for the rapid collection of thousands of images, which were then carefully and accurately labeled by hand to create a high-quality dataset for training the model.
 
+# 📊 Exploratory Data Analysis (EDA)
+Before training the model, an Exploratory Data Analysis (EDA) was performed to understand the dataset's composition. This step is crucial for identifying characteristics like class imbalance, which can significantly influence model training and performance. The key findings are detailed below.
+
+## Overall Class Distribution
+First, we analyzed the total number of images for each of the four classes across the entire dataset. The distribution is clearly imbalanced.
+
+As the graph shows, the Straight class is heavily over-represented compared to the others, containing more than double the images of the least-represented class, Braking. This imbalance is expected, as a car spends more time on straights than in specific braking zones, but it's a critical factor to consider. A model trained on this data might develop a bias towards predicting the majority class.
+
+![Image Distribution per Class](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/classes_distribution.png)
+
+## Train vs. Validation Set Comparison
+To ensure that our validation results are a reliable measure of performance, we verified that the class distribution is consistent between the training and validation sets.
+
+The percentage distribution is remarkably similar across both sets. For example, the Braking class constitutes approximately 16% of the training set and 14% of the validation set, while the Straight class accounts for roughly 42% and 50%, respectively. This consistency is excellent, as it confirms that the validation set is a representative sample of the training data.
+
+![Image Distribution per Class](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/classes_distribution_percentages.png)
+
+## Key Takeaways from EDA
+
+Imbalanced Dataset: The dataset is significantly imbalanced, with a majority of images belonging to the Straight class.
+
+Representative Validation Set: The proportional distribution of classes is consistent between the training and validation splits, ensuring that our evaluation metrics will be reliable.
+
+Modeling Strategy: The class imbalance must be addressed during the modeling phase. Techniques such as using class weights in the loss function or applying data augmentation strategies like oversampling the minority classes should be considered to prevent model bias and improve performance on less-represented classes.
+
 
 
 
