@@ -73,6 +73,27 @@ Below are image examples for each of the 4 classes used to train the model.
   <em>From left to right: Braking, Mid corner,Corner Exit and Straight.</em>
 </p>
 
+## 🚗 Dataset Generation
+
+The foundation of this project is a custom dataset meticulously generated using the iRacing simulation software. The primary goal was to create a diverse and robust collection of images that captures a wide variety of driving scenarios. To achieve this, a carefully selected combination of vehicles and circuits was used, ensuring the model is exposed to different visual cues, cockpit layouts, lighting conditions, and track characteristics.
+
+### Vehicles Used
+
+Two cars with distinct physics and visual profiles were chosen to enhance the dataset's variety, providing the model with different reference points for the driver's field of view.
+
+| <p align="center">Global Mazda MX-5 Cup</p> | <p align="center">Toyota GR86</p> |
+| :---: | :---: |
+| <br> <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/global_mazda.png" width="400"> | <br> <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/toyota_gr86.png" width="400"> |
+| A momentum-based car known for its predictable handling, widely used in introductory racing series. | A modern sports car offering a different handling challenge and a more contemporary cockpit environment. |
+
+### Circuits Raced
+
+Data was collected on two internationally renowned circuits, each presenting unique corner types, elevation changes, and environmental textures.
+
+| <p align="center">Oulton Park Circuit</p> | <p align="center">WeatherTech Raceway Laguna Seca</p> |
+| :---: | :---: |
+| <br> <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/oulton_park.png" width="400">`* | <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/laguna_seca.png" width="400"> |
+| A narrow, undulating track in the UK, famous for its blind crests and technically demanding sections. | A classic American circuit in California, known for its iconic "Corkscrew" chicane and significant elevation changes. |
 
 
 
