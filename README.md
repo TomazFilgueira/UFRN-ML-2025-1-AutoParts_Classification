@@ -64,14 +64,15 @@ The four classified phases are:
 Below are image examples for each of the 4 classes used to train the model.
 
 <p align="center">
-  <img src="[RAW_IMAGE_LINK_CURVA_APEX](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/train_dataset_iracing/curva_apex/curva%20(1002).jpg)" width="24%" alt="Apex Corner Example">
-  <img src="RAW_IMAGE_LINK_FREADA" width="24%" alt="Braking Example">
-  <img src="RAW_IMAGE_LINK_RETA" width="24%" alt="Straight Example">
-  <img src="RAW_IMAGE_LINK_SAIDA_CURVA" width="24%" alt="Corner Exit Example">
+  <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/train_dataset_iracing/freada/freada%20(1000).jpg" width="24%" alt="Braking Example">
+  <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/train_dataset_iracing/curva_apex/curva%20(1002).jpg" width="24%" alt="MidCorner Example">
+  <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/train_dataset_iracing/saida_curva/saida_curva%20(1006).jpg" width="24%" alt="Corner Exit Example">
+  <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/train_dataset_iracing/reta/reta%20(1002).jpg" width="24%" alt="Straight Example">  
 </p>
 <p align="center">
-  <em>From left to right: Apex Corner, Braking, Straight, and Corner Exit.</em>
+  <em>From left to right: Braking, Mid corner,Corner Exit and Straight.</em>
 </p>
+
 
 
 
