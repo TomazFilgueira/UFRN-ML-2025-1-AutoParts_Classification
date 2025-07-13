@@ -92,7 +92,7 @@ Data was collected on two internationally renowned circuits, each presenting uni
 
 | <p align="center">Oulton Park Circuit</p> | <p align="center">WeatherTech Raceway Laguna Seca</p> |
 | :---: | :---: |
-| <br> <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/oulton_park.png" width="400">`* | <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/laguna_seca.png" width="400"> |
+| <br> <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/oulton_park.png" width="400"> | <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/laguna_seca.png" width="400"> |
 | A narrow, undulating track in the UK, famous for its blind crests and technically demanding sections. | A classic American circuit in California, known for its iconic "Corkscrew" chicane and significant elevation changes. |
 
 ### Data Capture and Labeling Methodology
