@@ -124,11 +124,11 @@ The percentage distribution is remarkably similar across both sets. For example,
 
 ## Key Takeaways from EDA
 
-Imbalanced Dataset: The dataset is significantly imbalanced, with a majority of images belonging to the Straight class.
+**Imbalanced Dataset**: The dataset is significantly imbalanced, with a majority of images belonging to the Straight class.
 
-Representative Validation Set: The proportional distribution of classes is consistent between the training and validation splits, ensuring that our evaluation metrics will be reliable.
+**Representative Validation Set**: The proportional distribution of classes is consistent between the training and validation splits, ensuring that our evaluation metrics will be reliable.
 
-Modeling Strategy: The class imbalance must be addressed during the modeling phase. Techniques such as using class weights in the loss function or applying data augmentation strategies like oversampling the minority classes should be considered to prevent model bias and improve performance on less-represented classes.
+**Modeling Strategy**: The class imbalance must be addressed during the modeling phase. Techniques such as using class weights in the loss function or applying data augmentation strategies like oversampling the minority classes should be considered to prevent model bias and improve performance on less-represented classes.
 
 
 
