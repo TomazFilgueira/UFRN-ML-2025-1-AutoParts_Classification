@@ -11,7 +11,7 @@ This project focuses on predicting Simracing cornening phases using machine lear
 2. [📁 Directory Structure](#-directory-structure)
 3. [❓ Problem Description](#-problem-description)
 4. [🔢 Exploratory Data Analysis-EDA](#eda-checkpoints)
-5. [❤️ Iracing Image Classification(#classification-heart-disease)
+5. [🏎️ Iracing Image Classification](#classification-heart-disease)
 6. [☝️  Model 1 Conclusion](#model-1-conclusion)
 7. [✌️ Model 2 Implementation](#model-2)
 8. [⚡Metrics for model 2](#metrics-for-model-2)
@@ -61,11 +61,16 @@ The four classified phases are:
 3.  **Corner Exit:** The moment the driver unwinds the steering wheel and resumes acceleration towards the next straight.
 4.  **Straight:** Driving on a straight section of the track, typically under full throttle with minimal steering input, connecting one corner to the next.
 
+Below are image examples for each of the 4 classes used to train the model.
+
 <p align="center">
-  <img src="https://path/to/your/braking_image.jpg" width="24%">
-  <img src="https://path/to/your/turnin_image.jpg" width="24%">
-  <img src="https://path/to/your/apex_image.jpg" width="24%">
-  <img src="https://path/to/your/exit_image.jpg" width="24%">
+  <img src="[RAW_IMAGE_LINK_CURVA_APEX](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/train_dataset_iracing/curva_apex/curva%20(1002).jpg)" width="24%" alt="Apex Corner Example">
+  <img src="RAW_IMAGE_LINK_FREADA" width="24%" alt="Braking Example">
+  <img src="RAW_IMAGE_LINK_RETA" width="24%" alt="Straight Example">
+  <img src="RAW_IMAGE_LINK_SAIDA_CURVA" width="24%" alt="Corner Exit Example">
+</p>
+<p align="center">
+  <em>From left to right: Apex Corner, Braking, Straight, and Corner Exit.</em>
 </p>
 
 
