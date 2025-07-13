@@ -1,10 +1,8 @@
-# UFRN-ML-2025-1-AutoParts_Classification
-This repository represents the Automobile Parts classification using Pytorch.
-
+# UFRN-ML-2025-1-Iracing_Classification
 
 # ❤️ XXXXX Introduction
 
-This project focuses on predicting heart disease using machine learning models. It includes data cleaning, exploratory data analysis (EDA), feature importance analysis, model selection, parameter tuning, and deployment via a web service. The solution is designed for effective containerization and deployment.
+This project focuses on predicting Simracing cornening phases using machine learning models. It includes data preparation, exploratory data analysis (EDA), model selection, parameter tuning.
 
 ---
 
@@ -13,7 +11,7 @@ This project focuses on predicting heart disease using machine learning models. 
 2. [📁 Directory Structure](#-directory-structure)
 3. [❓ Problem Description](#-problem-description)
 4. [🔢 Exploratory Data Analysis-EDA](#eda-checkpoints)
-5. [❤️ Classification Heart Disease](#classification-heart-disease)
+5. [❤️ Iracing Image Classification(#classification-heart-disease)
 6. [☝️  Model 1 Conclusion](#model-1-conclusion)
 7. [✌️ Model 2 Implementation](#model-2)
 8. [⚡Metrics for model 2](#metrics-for-model-2)
@@ -25,11 +23,11 @@ This project focuses on predicting heart disease using machine learning models. 
 
 ## 📌 Project Overview
 
-Heart disease remains one of the leading causes of death globally. This project uses machine learning techniques to predict the likelihood of heart disease based on patient data. 
+Simracing is becoming even more popular nowadays. Even professionais drivers from Formula 1 uses this hardware in order to train before F1 sessions. This project uses deep learning techniques (Pytorch) to classify cornering phases in a virtual racing. 
 
 Key features include:
 - 🧹 Data preparation and cleaning.  
-- 🔍 Exploratory Data Analysis (EDA) to uncover patterns and relationships.  
+- 🔍 Exploratory Data Analysis (EDA).  
 - 🧠 Model training, evaluation, and parameter optimization.  
 - 🌐 Comparing models
 - ☁️ Change hyper parameters
@@ -46,14 +44,30 @@ Heart-Disease-Classification/
 ├── model_configuration            	# configure sequencial linear models
 ├── model_training                 	# script for train model    
 ├── images                         	# Contains images generates by model ouputs
-├── EDA.ipynp                         	# Jupyter notebook with Exploratory Data Analysis
-├── heart_disease_classification.ipynb  # Jupyter notebook using model 1 and 2 for classification
+├── EDA.ipynp                       # Jupyter notebook with Exploratory Data Analysis
+├── Iracing_classification.ipynb  # Jupyter notebook using model 1 and 2 for classification
 └── README.md                      	# Project description and instructions
 ```
 
 ---
-
 ## ❓ Problem Description
+
+Driving analysis in simulators is crucial for performance improvement. This project was born from a passion for sim racing and aims to create an AI tool capable of automatically identifying which cornering phase a driver is in, based solely on the game's image.
+
+The four classified phases are:
+
+1.  **Braking:** The moment of approaching and decelerating before the corner.
+2.  **Mid-corner:** The main cornering phase. This category combines the initial steering input (`Turn-in`) and passing the tightest point of the corner (`Apex`). The car is rotating and navigating the turn at its lowest speed.
+3.  **Corner Exit:** The moment the driver unwinds the steering wheel and resumes acceleration towards the next straight.
+4.  **Straight:** Driving on a straight section of the track, typically under full throttle with minimal steering input, connecting one corner to the next.
+
+<p align="center">
+  <img src="https://path/to/your/braking_image.jpg" width="24%">
+  <img src="https://path/to/your/turnin_image.jpg" width="24%">
+  <img src="https://path/to/your/apex_image.jpg" width="24%">
+  <img src="https://path/to/your/exit_image.jpg" width="24%">
+</p>
+
 
 
 
