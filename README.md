@@ -95,6 +95,16 @@ Data was collected on two internationally renowned circuits, each presenting uni
 | <br> <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/oulton_park.png" width="400">`* | <img src="https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/laguna_seca.png" width="400"> |
 | A narrow, undulating track in the UK, famous for its blind crests and technically demanding sections. | A classic American circuit in California, known for its iconic "Corkscrew" chicane and significant elevation changes. |
 
+### Data Capture and Labeling Methodology
+
+The dataset was built using a custom, two-step process to ensure both efficiency and accuracy.
+
+1.  **Automated Image Capture**: A Python script, **`printscreen_generator.ipynb`**, was executed during gameplay on the circuits and with the cars mentioned above. This script was configured to automatically capture a high-resolution screenshot every one second, saving all raw images into a temporary folder named `print screen folder`.
+
+2.  **Manual Classification Tool**: After the capture phase, a second Python script was used to facilitate a streamlined manual labeling process. This tool would open each image from the `print screen folder` individually, allowing for manual categorization. After an image was assigned to one of the four driving phases (Braking, Mid Corner , Corner Exit, or Straight), the script would automatically move the image file into its respective final directory within the dataset structure.
+
+This two-step methodology allowed for the rapid collection of thousands of images, which were then carefully and accurately labeled by hand to create a high-quality dataset for training the model.
+
 
 
 
