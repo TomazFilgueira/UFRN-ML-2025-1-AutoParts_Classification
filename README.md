@@ -1,12 +1,12 @@
 # UFRN-ML-2025-1-Iracing_Classification
 
-# ❤️ XXXXX Introduction
+#  🏎️🏎️🏎️ Introduction
 
 This project focuses on predicting Simracing cornening phases using machine learning models. It includes data preparation, exploratory data analysis (EDA), model selection, parameter tuning.
 
 ---
 
-## 🗂️ Table of Contents
+# 🗂️ Table of Contents
 1. [📌 Project Overview](#-project-overview)
 2. [📁 Directory Structure](#-directory-structure)
 3. [❓ Problem Description](#-problem-description)
@@ -21,7 +21,7 @@ This project focuses on predicting Simracing cornening phases using machine lear
 
 ---
 
-## 📌 Project Overview
+# 📌 Project Overview
 
 Simracing is becoming even more popular nowadays. Even professionais drivers from Formula 1 uses this hardware in order to train before F1 sessions. This project uses deep learning techniques (Pytorch) to classify cornering phases in a virtual racing. 
 
@@ -34,7 +34,7 @@ Key features include:
 
 ---
 
-## 📁 Directory Structure
+# 📁 Directory Structure
 
 ```plaintext
 Heart-Disease-Classification/
@@ -50,7 +50,7 @@ Heart-Disease-Classification/
 ```
 
 ---
-## ❓ Problem Description
+# ❓ Problem Description
 
 Driving analysis in simulators is crucial for performance improvement. This project was born from a passion for sim racing and aims to create an AI tool capable of automatically identifying which cornering phase a driver is in, based solely on the game's image.
 
@@ -73,7 +73,7 @@ Below are image examples for each of the 4 classes used to train the model.
   <em>From left to right: Braking, Mid corner,Corner Exit and Straight.</em>
 </p>
 
-## 🚗 Dataset Generation
+# 🚗 Dataset Generation
 
 The foundation of this project is a custom dataset meticulously generated using the iRacing simulation software. The primary goal was to create a diverse and robust collection of images that captures a wide variety of driving scenarios. To achieve this, a carefully selected combination of vehicles and circuits was used, ensuring the model is exposed to different visual cues, cockpit layouts, lighting conditions, and track characteristics.
 
@@ -129,6 +129,82 @@ The percentage distribution is remarkably similar across both sets. For example,
 **Representative Validation Set**: The proportional distribution of classes is consistent between the training and validation splits, ensuring that our evaluation metrics will be reliable.
 
 **Modeling Strategy**: The class imbalance must be addressed during the modeling phase. Techniques such as using class weights in the loss function or applying data augmentation strategies like oversampling the minority classes should be considered to prevent model bias and improve performance on less-represented classes.
+
+## ⚙️ Data Pipeline: From Raw Images to Model-Ready Batches
+
+The journey from raw gameplay screenshots to model-ready data is handled by a comprehensive data pipeline built with PyTorch's `transforms`, `ImageFolder`, and `DataLoader` classes. This process is designed to standardize the images and efficiently feed them to the model.
+
+Our Exploratory Data Analysis (EDA) revealed a significant class imbalance, which can be addressed with techniques like class weighting during training. The primary goal of this pipeline, however, is to first create a clean and consistent data format.
+
+The pipeline consists of two main stages:
+
+**1. Transformation and Standardization**
+
+Every image is processed through a sequential transformation pipeline created with **`transforms.Compose`**. This ensures that every input to the model is uniform.
+
+* **Resizing & Formatting:** Images are resized to a standard **28x28 pixels** using **`transforms.Resize()`** and converted to the **RGB** color space with a `ToImage()` transform.
+* **Scaling & Standardization:** Pixel values are scaled to a `[0.0, 1.0]` range using **`ToDtype(torch.float32, scale=True)`**. Then, a more rigorous **standardization** is applied. This is achieved with a custom **`Architecture.make_normalizer()`** function that calculates the dataset's mean and standard deviation to create a final **`transforms.Normalize()`** instance.
+
+**2. Data Loading and Batching**
+
+After the transformation pipeline is defined, the **`ImageFolder`** and **`DataLoader`** classes manage the data flow:
+
+* **`ImageFolder`** automatically discovers the classes from the folder names (`train_dataset_iracing` and `test_dataset_iracing`) and applies the `Compose` pipeline to each image.
+* **`DataLoader`** then wraps the dataset to create **mini-batches of 16 images**. For the training set, the data is **shuffled** each epoch to improve model generalization, while the validation loader does not, ensuring consistent evaluation.
+
+## 🧠 Model Configuration and Training
+
+To identify the optimal architecture for this classification task, a systematic, experimental approach was taken. Three distinct model configurations were trained and evaluated, starting with a baseline model and then exploring variations in network width and depth.
+
+### 1. Base Model Configuration
+
+The initial model, which serves as our **base model**, is a custom convolutional neural network (CNN) defined as **`arch.cnn2`**. This architecture was configured with a specific number of feature maps in its convolutional layers.
+
+* **Architecture:** `arch.cnn2`
+* **Number of Features:** `num_features = 5`
+
+This configuration provides a benchmark against which all other experiments are measured.
+
+### 2. Experiment 1: Varying Network Width
+
+To analyze the impact of the number of feature maps (network width), the base model was re-trained with two variations, altering only the `num_features` parameter:
+
+* **Simpler Model:** `num_features = 3`
+* **More Complex Model:** `num_features = 10`
+
+This experiment helps determine if a wider (more features) or narrower (fewer features) network is better suited for this specific image dataset.
+
+### 3. Experiment 2: Increasing Network Depth
+
+To test the effect of a deeper architecture, a third model was created by modifying the base `arch.cnn2` architecture.
+
+* **Modification:** An additional convolutional block was inserted into the network.
+
+This experiment investigates whether a deeper model, with more layers, can learn more complex hierarchical features from the images and improve classification accuracy.
+
+### Training Process
+
+To ensure a fair comparison, all model configurations were trained using an identical setup, managed by a custom `Architecture` class that encapsulates the model, loss function, and optimizer.
+
+The key components and hyperparameters of the training pipeline are:
+
+* **Reproducibility:** A fixed random seed, **`torch.manual_seed(13)`**, was set to ensure that experiments are reproducible.
+* **Loss Function:** The **`nn.CrossEntropyLoss`** was used as the criterion. This loss function is standard for multi-class classification tasks.
+* **Optimizer:** The **`Adam`** optimizer was chosen to update the model's weights, with a learning rate set to **`3e-4`**.
+* **Regularization:** A dropout rate of **`p=0.3`** was applied within the `CNN2` model architecture to help prevent overfitting.
+* **Epochs:** Each model was trained for a total of **8 epochs**.
+
+After training was complete, the final state dictionary of the model was saved to a file (e.g., `base_model_cnn2.pth`) for evaluation and future use. The training and validation loss curves were also plotted to visually assess the model's learning progress.
+
+  
+# 📊 Results
+
+> **Commentary:** A section to display your model's performance. Fill this in with your final numbers for accuracy, precision, etc. The confusion matrix is especially important to show where the model succeeds and fails.
+
+The model achieved a validation accuracy of **XX.X%** after **YY** training epochs. The confusion matrix below details the performance for each class:
+
+**[INSERT CONFUSION MATRIX IMAGE HERE]**
+
 
 
 
