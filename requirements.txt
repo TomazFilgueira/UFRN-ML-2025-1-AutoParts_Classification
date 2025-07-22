@@ -2,6 +2,7 @@
 torch
 torchvision
 torchaudio
+torch-lr-finder
 pandas
 scipy
 numpy 
