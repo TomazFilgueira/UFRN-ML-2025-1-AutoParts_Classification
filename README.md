@@ -210,7 +210,7 @@ The table below summarizes the final validation performance for each of the four
 | **1. Base Model** (`n_feature=5`) | `65.4%` | The benchmark performance. |
 | **2. Short Model** (`n_feature=3`) | `63.9%` | Performance of the model with fewer features. |
 | **3. Wider Model** (`n_feature=10`) | `61.2%` | Performance of the model with more features. |
-| **4. Deeper Model** (+1 Conv Block) | `XX.X%` | Performance of the model with more layers. |
+| **4. Deeper Model** (+1 Conv Block) | `62.4%` | Performance of the model with more layers. |
 
 ![Confusion Matrix for the Best Model](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/models_comparison.png)
 
