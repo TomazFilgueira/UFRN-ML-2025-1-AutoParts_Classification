@@ -142,7 +142,7 @@ The pipeline consists of two main stages:
 
 Every image is processed through a sequential transformation pipeline created with **`transforms.Compose`**. This ensures that every input to the model is uniform.
 
-* **Resizing & Formatting:** Images are resized to a standard **28x28 pixels** using **`transforms.Resize()`** and converted to the **RGB** color space with a `ToImage()` transform.
+* **Resizing & Formatting:** Images are resized to a standard **128x128 pixels** using **`transforms.Resize()`** and converted to the **RGB** color space with a `ToImage()` transform.
 * **Scaling & Standardization:** Pixel values are scaled to a `[0.0, 1.0]` range using **`ToDtype(torch.float32, scale=True)`**. Then, a more rigorous **standardization** is applied. This is achieved with a custom **`Architecture.make_normalizer()`** function that calculates the dataset's mean and standard deviation to create a final **`transforms.Normalize()`** instance.
 
 **2. Data Loading and Batching**
@@ -199,11 +199,36 @@ After training was complete, the final state dictionary of the model was saved t
   
 # 📊 Results
 
-> **Commentary:** A section to display your model's performance. Fill this in with your final numbers for accuracy, precision, etc. The confusion matrix is especially important to show where the model succeeds and fails.
+This section presents the performance of the four trained model configurations. The goal is to compare their effectiveness and select the best-performing architecture for the final classification task. **Validation Accuracy** was used as the primary metric for comparison.
 
-The model achieved a validation accuracy of **XX.X%** after **YY** training epochs. The confusion matrix below details the performance for each class:
+## Performance Metrics Comparison
 
-**[INSERT CONFUSION MATRIX IMAGE HERE]**
+The table below summarizes the final validation performance for each of the four experimental models after 8 epochs of training.
+
+| Model Configuration | Validation Accuracy | Notes |
+| :--- | :---: | :--- |
+| **1. Base Model** (`n_feature=5`) | `65.4%` | The benchmark performance. |
+| **2. Short Model** (`n_feature=3`) | `63.9%` | Performance of the model with fewer features. |
+| **3. Wider Model** (`n_feature=10`) | `61.2%` | Performance of the model with more features. |
+| **4. Deeper Model** (+1 Conv Block) | `XX.X%` | Performance of the model with more layers. |
+
+![Confusion Matrix for the Best Model](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/models_comparison.png)
+
+**Analysis:** The results indicate that the **Base Model** achieved the highest validation accuracy, while the XXXXX had the lowest. However, it has to bear in mind that base model has got 65% of accuracy, which is very low!
+
+This suggests that for this task, no models had greate performance. Indicating that we need to evaluate a better CNN Architecture.
+
+### Analysis of the Best Model
+
+Based on the results, the **[Your Best Model's Name, e.g., Deeper Model]** was selected as the final model. A confusion matrix was generated to provide a more detailed look at its performance across the four classes.
+
+![Confusion Matrix for the Best Model](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/cm_models_comparison.png)
+
+*(**Add your analysis of the confusion matrix here.** For example: "The confusion matrix reveals that the model performs exceptionally well on the `Straight` and `Braking` classes. The primary source of confusion occurs between `Mid Corner` and `Exit Corner`, which is expected due to their visual similarity as the car begins to accelerate.")*
+
+### Conclusion
+
+The experimental results demonstrate that the **[Your Best Model's Name]** provides the best balance of accuracy and performance, and it has been selected as the final model for this project.
 
 
 
