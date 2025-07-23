@@ -222,7 +222,7 @@ This suggests that for this task, no models had greate performance. Indicating t
 
 Based on the results, the **[Your Best Model's Name, e.g., Deeper Model]** was selected as the final model. A confusion matrix was generated to provide a more detailed look at its performance across the four classes.
 
-![Confusion Matrix for the Best Model](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/cm_models_comparison.png)
+![Confusion Matrix for the Best Model](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/cm_base_model.png)
 
 *(**Add your analysis of the confusion matrix here.** For example: "The confusion matrix reveals that the model performs exceptionally well on the `Straight` and `Braking` classes. The primary source of confusion occurs between `Mid Corner` and `Exit Corner`, which is expected due to their visual similarity as the car begins to accelerate.")*
 
