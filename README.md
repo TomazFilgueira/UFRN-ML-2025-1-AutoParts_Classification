@@ -10,13 +10,16 @@ This project focuses on predicting Simracing cornening phases using machine lear
 1. [📌 Project Overview](#-project-overview)
 2. [📁 Directory Structure](#-directory-structure)
 3. [❓ Problem Description](#-problem-description)
-4. [🔢 Exploratory Data Analysis-EDA](#eda-checkpoints)
-5. [🏎️ Iracing Image Classification](#classification-heart-disease)
-6. [☝️  Model 1 Conclusion](#model-1-conclusion)
-7. [✌️ Model 2 Implementation](#model-2)
-8. [⚡Metrics for model 2](#metrics-for-model-2)
-9. [☝️✌️Comparing models with different threshold](#comparing-models-with-different-threshold)
-10. [🏁Project Conclusion](#project-conclusion)
+4. [🚗 Dataset Generation](#-Dataset-Generation)
+5. [🔢 Exploratory Data Analysis-EDA](#eda-checkpoints)
+6. [Data Pipeline](#Data-Pipeline:-From-Raw-Images-to-Model-Ready-Batches)
+7. [🧠 Model Configuration and Training](#-Model-Configuration-and-Training)
+8. [🏎️ Iracing Image Classification](#classification-heart-disease)
+9. [☝️  Model 1 Conclusion](#model-1-conclusion)
+10. [✌️ Model 2 Implementation](#model-2)
+11. [⚡Metrics for model 2](#metrics-for-model-2)
+12. [☝️✌️Comparing models with different threshold](#comparing-models-with-different-threshold)
+13. [🏁Project Conclusion](#project-conclusion)
 
 
 ---
@@ -130,7 +133,7 @@ The percentage distribution is remarkably similar across both sets. For example,
 
 **Modeling Strategy**: The class imbalance must be addressed during the modeling phase. Techniques such as using class weights in the loss function or applying data augmentation strategies like oversampling the minority classes should be considered to prevent model bias and improve performance on less-represented classes.
 
-## ⚙️ Data Pipeline: From Raw Images to Model-Ready Batches
+#⚙️ Data Pipeline: From Raw Images to Model-Ready Batches
 
 The journey from raw gameplay screenshots to model-ready data is handled by a comprehensive data pipeline built with PyTorch's `transforms`, `ImageFolder`, and `DataLoader` classes. This process is designed to standardize the images and efficiently feed them to the model.
 
@@ -152,11 +155,11 @@ After the transformation pipeline is defined, the **`ImageFolder`** and **`DataL
 * **`ImageFolder`** automatically discovers the classes from the folder names (`train_dataset_iracing` and `test_dataset_iracing`) and applies the `Compose` pipeline to each image.
 * **`DataLoader`** then wraps the dataset to create **mini-batches of 16 images**. For the training set, the data is **shuffled** each epoch to improve model generalization, while the validation loader does not, ensuring consistent evaluation.
 
-## 🧠 Model Configuration and Training
+# 🧠 Model Configuration and Training
 
 To identify the optimal architecture for this classification task, a systematic, experimental approach was taken. Three distinct model configurations were trained and evaluated, starting with a baseline model and then exploring variations in network width and depth.
 
-### 1. Base Model Configuration
+## 1. Base Model Configuration
 
 The initial model, which serves as our **base model**, is a custom convolutional neural network (CNN) defined as **`arch.cnn2`**. This architecture was configured with a specific number of feature maps in its convolutional layers.
 
@@ -165,7 +168,7 @@ The initial model, which serves as our **base model**, is a custom convolutional
 
 This configuration provides a benchmark against which all other experiments are measured.
 
-### 2. Experiment 1: Varying Network Width
+## 2. Experiment 1: Varying Network Width
 
 To analyze the impact of the number of feature maps (network width), the base model was re-trained with two variations, altering only the `num_features` parameter:
 
@@ -174,7 +177,7 @@ To analyze the impact of the number of feature maps (network width), the base mo
 
 This experiment helps determine if a wider (more features) or narrower (fewer features) network is better suited for this specific image dataset.
 
-### 3. Experiment 2: Increasing Network Depth
+## 3. Experiment 2: Increasing Network Depth
 
 To test the effect of a deeper architecture, a third model was created by modifying the base `arch.cnn2` architecture.
 
@@ -182,7 +185,7 @@ To test the effect of a deeper architecture, a third model was created by modify
 
 This experiment investigates whether a deeper model, with more layers, can learn more complex hierarchical features from the images and improve classification accuracy.
 
-### Training Process
+## Training Process
 
 To ensure a fair comparison, all model configurations were trained using an identical setup, managed by a custom `Architecture` class that encapsulates the model, loss function, and optimizer.
 
@@ -226,7 +229,7 @@ Based on the results, the **[Your Best Model's Name, e.g., Deeper Model]** was s
 
 *(**Add your analysis of the confusion matrix here.** For example: "The confusion matrix reveals that the model performs exceptionally well on the `Straight` and `Braking` classes. The primary source of confusion occurs between `Mid Corner` and `Exit Corner`, which is expected due to their visual similarity as the car begins to accelerate.")*
 
-### Conclusion
+# Project Conclusion
 
 The experimental results demonstrate that the **[Your Best Model's Name]** provides the best balance of accuracy and performance, and it has been selected as the final model for this project.
 
