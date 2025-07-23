@@ -11,7 +11,7 @@ This project focuses on predicting Simracing cornening phases using machine lear
 2. [📁 Directory Structure](#-directory-structure)
 3. [❓ Problem Description](#-problem-description)
 4. [🚗 Dataset Generation](#-Dataset-Generation)
-5. [🔢 Exploratory Data Analysis-EDA](#eda-checkpoints)
+5. [🔢 Exploratory Data Analysis-EDA](#-Exploratory-Data-Analysis-(EDA))
 6. [ Data Pipeline](#-Data-Pipeline:-From-Raw-Images-to-Model-Batches)
 7. [🧠 Model Configuration and Training](#-Model-Configuration-and-Training)
 8. [🏎️ Iracing Image Classification](#classification-heart-disease)
