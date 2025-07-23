@@ -12,7 +12,7 @@ This project focuses on predicting Simracing cornening phases using machine lear
 3. [❓ Problem Description](#-problem-description)
 4. [🚗 Dataset Generation](#-Dataset-Generation)
 5. [🔢 Exploratory Data Analysis-EDA](#eda-checkpoints)
-6. [Data Pipeline](#Data-Pipeline:-From-Raw-Images-to-Model-Ready-Batches)
+6. [ Data Pipeline](#-Data-Pipeline:-From-Raw-Images-to-Model-Ready-Batches)
 7. [🧠 Model Configuration and Training](#-Model-Configuration-and-Training)
 8. [🏎️ Iracing Image Classification](#classification-heart-disease)
 9. [☝️  Model 1 Conclusion](#model-1-conclusion)
@@ -133,7 +133,7 @@ The percentage distribution is remarkably similar across both sets. For example,
 
 **Modeling Strategy**: The class imbalance must be addressed during the modeling phase. Techniques such as using class weights in the loss function or applying data augmentation strategies like oversampling the minority classes should be considered to prevent model bias and improve performance on less-represented classes.
 
-#⚙️ Data Pipeline: From Raw Images to Model-Ready Batches
+# ⚙️ Data Pipeline: From Raw Images to Model-Ready Batches
 
 The journey from raw gameplay screenshots to model-ready data is handled by a comprehensive data pipeline built with PyTorch's `transforms`, `ImageFolder`, and `DataLoader` classes. This process is designed to standardize the images and efficiently feed them to the model.
 
