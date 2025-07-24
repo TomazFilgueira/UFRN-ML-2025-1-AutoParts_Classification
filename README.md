@@ -7,19 +7,29 @@ This project focuses on predicting Simracing cornening phases using machine lear
 ---
 
 # 🗂️ Table of Contents
-1. [📌 Project Overview](#-project-overview)
-2. [📁 Directory Structure](#-directory-structure)
-3. [❓ Problem Description](#-problem-description)
-4. [🚗 Dataset Generation](#-Dataset-Generation)
-5. [🔢 Exploratory Data Analysis-EDA](#Exploratory-Data-Analysis-(EDA))
-6. [ Data Pipeline](#-Data-Pipeline:-From-Raw-Images-to-Model-Batches)
-7. [🧠 Model Configuration and Training](#-Model-Configuration-and-Training)
-8. [🏎️ Iracing Image Classification](#classification-heart-disease)
-9. [☝️  Model 1 Conclusion](#model-1-conclusion)
-10. [✌️ Model 2 Implementation](#model-2)
-11. [⚡Metrics for model 2](#metrics-for-model-2)
-12. [☝️✌️Comparing models with different threshold](#comparing-models-with-different-threshold)
-13. [🏁Project Conclusion](#project-conclusion)
+
+1.  [📌 Project Overview](#-project-overview)
+2.  [📁 Directory Structure](#-directory-structure)
+3.  [❓ Problem Description](#-problem-description)
+4.  [🚗 Dataset Generation](#-dataset-generation)
+    * [Vehicles Used](#vehicles-used)
+    * [Circuits Raced](#circuits-raced)
+    * [Data Capture and Labeling Methodology](#data-capture-and-labeling-methodology)
+5.  [📊 Exploratory Data Analysis (EDA)](#-exploratory-data-analysis-eda)
+    * [Overall Class Distribution](#overall-class-distribution)
+    * [Train vs. Validation Set Comparison](#train-vs-validation-set-comparison)
+    * [Key Takeaways from EDA](#key-takeaways-from-eda)
+6.  [⚙️ Data Pipeline](#-data-pipeline-from-raw-images-to-model-batches)
+    * [Transformation and Standardization](#1-transformation-and-standardization)
+    * [Data Loading and Batching](#2-data-loading-and-batching)
+7.  [🧠 Model Configuration and Training](#-model-configuration-and-training)
+    * [Experimental Models](#experimental-models)
+    * [Learning Rate Selection](#learning-rate-selection)
+    * [Training Process](#training-process)
+8.  [📈 Results and Analysis](#-results-and-analysis)
+    * [Initial Results (LR = 3e-4)](#-results-using-lr3e-4)
+    * [Impact of Learning Rate Optimization (LR = 3.53e-3)](#-results-using-lr353e-3)
+9.  [🏁 Conclusion](#-conclusion)
 
 
 ---
