@@ -236,7 +236,7 @@ The table below summarizes the final validation performance for each of the four
 
 ![Confusion Matrix for the Best Model](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/models_comparison.png)
 
-**Analysis:** The results indicate that the **Base Model** achieved the highest validation accuracy, while the XXXXX had the lowest. However, it has to bear in mind that base model has got 65% of accuracy, which is very low!
+**Analysis:** The results indicate that the **Base Model** achieved the highest validation accuracy, while the `model 3` had the lowest. However, it has to bear in mind that base model has got 65% of accuracy, which is very low!
 
 This suggests that for this task, no models had greate performance. Indicating that we need to evaluate a better CNN Architecture.
 
