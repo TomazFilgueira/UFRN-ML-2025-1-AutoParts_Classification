@@ -7,19 +7,29 @@ This project focuses on predicting Simracing cornening phases using machine lear
 ---
 
 # 🗂️ Table of Contents
-1. [📌 Project Overview](#-project-overview)
-2. [📁 Directory Structure](#-directory-structure)
-3. [❓ Problem Description](#-problem-description)
-4. [🚗 Dataset Generation](#-Dataset-Generation)
-5. [🔢 Exploratory Data Analysis-EDA](#Exploratory-Data-Analysis-(EDA))
-6. [ Data Pipeline](#-Data-Pipeline:-From-Raw-Images-to-Model-Batches)
-7. [🧠 Model Configuration and Training](#-Model-Configuration-and-Training)
-8. [🏎️ Iracing Image Classification](#classification-heart-disease)
-9. [☝️  Model 1 Conclusion](#model-1-conclusion)
-10. [✌️ Model 2 Implementation](#model-2)
-11. [⚡Metrics for model 2](#metrics-for-model-2)
-12. [☝️✌️Comparing models with different threshold](#comparing-models-with-different-threshold)
-13. [🏁Project Conclusion](#project-conclusion)
+
+1.  [📌 Project Overview](#-project-overview)
+2.  [📁 Directory Structure](#-directory-structure)
+3.  [❓ Problem Description](#-problem-description)
+4.  [🚗 Dataset Generation](#-dataset-generation)
+    * [Vehicles Used](#vehicles-used)
+    * [Circuits Raced](#circuits-raced)
+    * [Data Capture and Labeling Methodology](#data-capture-and-labeling-methodology)
+5.  [📊 Exploratory Data Analysis (EDA)](#-exploratory-data-analysis-eda)
+    * [Overall Class Distribution](#overall-class-distribution)
+    * [Train vs. Validation Set Comparison](#train-vs-validation-set-comparison)
+    * [Key Takeaways from EDA](#key-takeaways-from-eda)
+6.  [⚙️ Data Pipeline](#-data-pipeline-from-raw-images-to-model-batches)
+    * [Transformation and Standardization](#1-transformation-and-standardization)
+    * [Data Loading and Batching](#2-data-loading-and-batching)
+7.  [🧠 Model Configuration and Training](#-model-configuration-and-training)
+    * [Experimental Models](#experimental-models)
+    * [Learning Rate Selection](#learning-rate-selection)
+    * [Training Process](#training-process)
+8.  [📈 Results and Analysis](#-results-and-analysis)
+    * [Initial Results (LR = 3e-4)](#-results-using-lr3e-4)
+    * [Impact of Learning Rate Optimization (LR = 3.53e-3)](#-results-using-lr353e-3)
+9.  [🏁 Conclusion](#-conclusion)
 
 
 ---
@@ -185,7 +195,17 @@ To test the effect of a deeper architecture, a third model was created by modify
 
 This experiment investigates whether a deeper model, with more layers, can learn more complex hierarchical features from the images and improve classification accuracy.
 
-## Training Process
+## Learning Rate Selection
+
+All models were initially trained with a fixed learning rate of **3e-4** to establish a baseline performance. After observing the initial training losses from this process, the **`pytorch-lr-finder`** library was used as a verification step to determine if this learning rate was optimal.
+
+The LR Finder works by running a short training session where the learning rate is gradually increased and the corresponding loss is recorded. This helps to systematically identify a range for the optimal learning rate, which is typically where the loss is decreasing most steeply.
+
+The goal of this subsequent analysis was to compare our initial choice of **3e-4** against the rate suggested by the LR Finder (**`3.53e-3`**), providing a more robust validation of the chosen hyperparameters.
+
+![LR Finder Plot](images/lr_finder.png)
+
+# Training Process
 
 To ensure a fair comparison, all model configurations were trained using an identical setup, managed by a custom `Architecture` class that encapsulates the model, loss function, and optimizer.
 
@@ -193,14 +213,13 @@ The key components and hyperparameters of the training pipeline are:
 
 * **Reproducibility:** A fixed random seed, **`torch.manual_seed(13)`**, was set to ensure that experiments are reproducible.
 * **Loss Function:** The **`nn.CrossEntropyLoss`** was used as the criterion. This loss function is standard for multi-class classification tasks.
-* **Optimizer:** The **`Adam`** optimizer was chosen to update the model's weights, with a learning rate set to **`3e-4`**.
-* **Regularization:** A dropout rate of **`p=0.3`** was applied within the `CNN2` model architecture to help prevent overfitting.
+* **Optimizer:** The **`Adam`** optimizer was chosen to update the model's weights, with a base learning rate set to **`3e-4`**. and later on the models were trained with suggested lambda rate of **`3.53e-3`**
+* **Regularization:** A dropout rate of **`p=0.3`** was applied within the `CNN4` model architecture to help prevent overfitting.
 * **Epochs:** Each model was trained for a total of **8 epochs**.
 
 After training was complete, the final state dictionary of the model was saved to a file (e.g., `base_model_cnn2.pth`) for evaluation and future use. The training and validation loss curves were also plotted to visually assess the model's learning progress.
 
-  
-# 📊 Results
+# 📊 Results using LR=3e-4
 
 This section presents the performance of the four trained model configurations. The goal is to compare their effectiveness and select the best-performing architecture for the final classification task. **Validation Accuracy** was used as the primary metric for comparison.
 
@@ -217,22 +236,57 @@ The table below summarizes the final validation performance for each of the four
 
 ![Confusion Matrix for the Best Model](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/models_comparison.png)
 
-**Analysis:** The results indicate that the **Base Model** achieved the highest validation accuracy, while the XXXXX had the lowest. However, it has to bear in mind that base model has got 65% of accuracy, which is very low!
+**Analysis:** The results indicate that the **Base Model** achieved the highest validation accuracy, while the `model 3` had the lowest. However, it has to bear in mind that base model has got 65% of accuracy, which is very low!
 
 This suggests that for this task, no models had greate performance. Indicating that we need to evaluate a better CNN Architecture.
 
 ### Analysis of the Best Model
 
-Based on the results, the **[Your Best Model's Name, e.g., Deeper Model]** was selected as the final model. A confusion matrix was generated to provide a more detailed look at its performance across the four classes.
+Based on the results, the **Base model** was selected as the final model. A confusion matrix was generated to provide a more detailed look at its performance across the four classes.
 
 ![Confusion Matrix for the Best Model](https://github.com/TomazFilgueira/UFRN-ML-2025-1-Iracing_Classification/blob/main/images/cm_base_model.png)
 
-*(**Add your analysis of the confusion matrix here.** For example: "The confusion matrix reveals that the model performs exceptionally well on the `Straight` and `Braking` classes. The primary source of confusion occurs between `Mid Corner` and `Exit Corner`, which is expected due to their visual similarity as the car begins to accelerate.")*
+The confusion matrix for the Base Model provides a detailed look at its performance on a class-by-class basis.
 
-# Project Conclusion
+**Key Insights:**
 
-The experimental results demonstrate that the **[Your Best Model's Name]** provides the best balance of accuracy and performance, and it has been selected as the final model for this project.
+* **High Performance on `Straight`:** The model excels at identifying the **`Straight`** class, correctly classifying 604 instances. This is likely due to the distinct visual features of a straight line and this class having the most samples in the dataset.
 
+* **Significant Confusion Between Adjacent Phases:** The model's primary weakness is confusing classes that are visually similar and sequential in a lap.
+    * The most significant error is misclassifying **`Mid Corner`** as **`Exit Corner`** 134 times. This is logical, as the visual transition from being at the apex to beginning the exit is extremely subtle.
+    * Similarly, it frequently confuses **`Exit Corner`** with **`Straight`** (95 times), which is expected as one phase flows directly into the next.
+
+* **Moderate Performance on Cornering Classes:** The **`Braking`** and **`Exit Corner`** classes show moderate performance. While the model correctly identifies many instances, it often confuses them with the `Straight` class, highlighting the difficulty in capturing the exact start and end points of a corner.
+
+Overall, the Base Model is effective at identifying the most distinct phase (`Straight`) but struggles with the nuanced transitions between cornering stages. This suggests that more complex models may be needed to better distinguish these subtle features.
+
+# 📊 Results using LR=3.53e-3
+
+After the initial training, all four models were re-trained using the higher learning rate of **$3.53 \times 10^{-3}$** suggested by the LR Finder. The goal was to validate if this new rate would improve performance. The results are compared below.
+
+![Model Accuracy Before and After LR Finder](images/accuracy_before_after_LR_finder.png)
+
+**Key Insights:**
+
+* **Significant Improvement for Deeper Model:** **Model 3 (the Deeper Model)** saw the most dramatic performance increase, jumping from **61.22%** to **71.97%** accuracy. This strongly suggests that the initial, lower learning rate was preventing the deeper architecture from converging to its optimal solution. See confusion matrix below.
+
+* **General Effectiveness:** The higher learning rate also improved the performance of **Model 1 (Base Model)** and **Model 2 (Short Model)**, confirming that the initial learning rate was too conservative for most of the tested architectures.
+
+* **Negative Impact on Wider Model:** Interestingly, **Model 4 (the Wider Model)** performed *worse* with the higher learning rate, with its accuracy dropping from 62.42% to 60.08%. This indicates that different model architectures can have different optimal learning rates, and a wider network may be more sensitive to higher rates, potentially causing it to overshoot a good solution during training.
+
+![Model 3 after LR finder](images/best_model_LR_finder.png)
+
+**Conclusion:** This experiment validates the use of the LR Finder as a crucial step for hyperparameter tuning. It not only improved performance across most models but also identified the **Deeper Model, when trained with the higher learning rate, as the clear best-performing architecture.**
+
+# 🏁 Conclusion
+
+This project successfully developed and evaluated a convolutional neural network capable of classifying distinct driving phases from iRacing gameplay footage. Through a systematic approach involving data generation, exploratory analysis, and experimental model training, we were able to build a functional proof-of-concept for real-time driving analysis.
+
+The key finding of our experimental process was that model architecture and hyperparameter tuning are both critical for performance. The **Deeper Model**, which featured an additional convolutional block, ultimately provided the highest accuracy, but still low. Furthermore, the use of an **LR Finder** was instrumental; it identified a learning rate ten times higher than our initial choice, which unlocked significant performance gains and pushed the final model's accuracy to **over 71%**.
+
+The primary challenge remains the model's difficulty in distinguishing between visually similar and chronologically adjacent phases, such as `Mid Corner` and `Exit Corner`. This highlights the inherent subtlety of the classification task. Future work should focus on addressing the dataset's class imbalance through techniques like class weighting and expanding the dataset with more cars and tracks.
+
+Overall, the project demonstrates the viability of using computer vision to interpret complex driving behavior, laying the groundwork for potential applications in real-time driver coaching or post-race analysis tools.
 
 
 
